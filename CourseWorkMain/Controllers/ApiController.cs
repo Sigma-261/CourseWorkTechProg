@@ -37,12 +37,10 @@ namespace CourseWorkMain.Controllers
             {
                 localities.Add(new JObject(
                     new JProperty("id", l.id),
-                    new JProperty("name", l.Name),
-                    new JProperty("type", l.Type),
-                    new JProperty("number_residants", l.NumberResidants),
-                    new JProperty("budget", l.Budget),
-                    new JProperty("budget1", l.Budget1),
-                    new JProperty("mayor", l.Mayor)
+                    new JProperty("employee", l.Employee),
+                    new JProperty("days", l.Days),
+                    new JProperty("wage", l.Wage),
+                    new JProperty("city", l.City)
                     ));
             }
 
