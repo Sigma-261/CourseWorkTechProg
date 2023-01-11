@@ -14,7 +14,7 @@ namespace CourseWorkMain.Repositories
         }
 
         //Получить всю информаци по всем продуктам
-        public List<Locality> GetLocalities()
+        public List<BusinessTrip> GetLocalities()
         {
             return _ctx.Localities.ToList();
         }
