@@ -7,7 +7,7 @@ namespace CourseWorkMain.DB
 {
     public class ApplicationContext : DbContext
     {
-        public DbSet<BusinessTrip> Localities { get; set; }
+        public DbSet<BusinessTrip> BusinessTrips { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
@@ -17,18 +17,16 @@ namespace CourseWorkMain.DB
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Определение товаров
-            BusinessTrip locality1 = new BusinessTrip
+            BusinessTrip businessTrip = new BusinessTrip
             {
                 id = 1,
-                Name = "Волгоград",
-                Type = "City",
-                NumberResidants = 100000,
-                Budget = 100000,
-                Budget1 = 50,
-                Mayor = "Владимир Васильевич Марченко"
+                Employee = "Владимир Васильевич Марченко",
+                Days = 15,
+                Wage = 100000,
+                City = "Волгоград",
             };
 
-            modelBuilder.Entity<BusinessTrip>().HasData(locality1);
+            modelBuilder.Entity<BusinessTrip>().HasData(businessTrip);
         }
     }
 }
