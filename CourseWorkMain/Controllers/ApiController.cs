@@ -3,6 +3,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Xml.Linq;
 using CourseWorkMain.Repositories;
+using CourseWorkMain.Models;
+using MathNet.Numerics.Statistics;
 
 namespace CourseWorkMain.Controllers
 {
@@ -29,12 +31,12 @@ namespace CourseWorkMain.Controllers
         [HttpGet("GetBusinessTrips")]
         public IActionResult GetBusinessTrips()
         {
-            dynamic localities = new JArray();
+            dynamic businessTrips = new JArray();
 
             var ForeachLocalities = _repo.GetBusinessTrips();
             foreach (var l in ForeachLocalities)
             {
-                localities.Add(new JObject(
+                businessTrips.Add(new JObject(
                     new JProperty("id", l.id),
                     new JProperty("employee", l.Employee),
                     new JProperty("days", l.Days),
@@ -43,7 +45,7 @@ namespace CourseWorkMain.Controllers
                     ));
             }
 
-            string respStr = localities.ToString();
+            string respStr = businessTrips.ToString();
 
             return Content(respStr);
         }
@@ -51,8 +53,8 @@ namespace CourseWorkMain.Controllers
         /// <summary>
         /// Получить статистику по бюджетам
         /// </summary>
-        [HttpGet("GetStatisticBudgets")]
-        public IActionResult GetLStatisticBudgets()
+        [HttpGet("GetStatistic")]
+        public IActionResult GetStatisticWage()
         {
             var StatisticFromResult = _repo.GetLStatisticBudgets(_repo.GetBudgets());
             var statistic = new JObject(
@@ -68,23 +70,22 @@ namespace CourseWorkMain.Controllers
         }
 
         /// <summary>
-        /// Получить все локации
+        /// Получить все командировки
         /// </summary>
-        [HttpGet("GetLocalitiyById")]
-        public IActionResult GetLocalitiyById([FromQuery(Name = "id")] int id)
+        [HttpGet("GetBusinessTripById")]
+        public IActionResult GetBusinessTripById([FromQuery(Name = "id")] int id)
         {
             dynamic resp = new JObject();
 
-            var l = _repo.GetLocalityById(id);
+            var l = _repo.GetBusinessTripById(id);
             if (l != null)
             {
                 resp = new JObject(
                     new JProperty("id", l.id),
-                    new JProperty("name", l.Name),
-                    new JProperty("type", l.Type),
-                    new JProperty("numberresidants", l.NumberResidants),
-                    new JProperty("budget", l.Budget),
-                    new JProperty("mayor", l.Mayor)
+                    new JProperty("employee", l.Employee),
+                    new JProperty("days", l.Days),
+                    new JProperty("wage", l.Wage),
+                    new JProperty("city", l.City)
                     );
             }
 
@@ -94,26 +95,24 @@ namespace CourseWorkMain.Controllers
         }
 
         /// <summary>
-        /// Создать локацию
+        /// Создать командировку
         /// </summary>
-        [HttpPost("CreateLocality")]
-        public IActionResult CreateLocality([FromBody] Locality locality)
+        [HttpPost("CreateBusinessTrip")]
+        public IActionResult CreateLocality([FromBody] BusinessTrip locality)
         {
-            string name = locality.Name;
-            string type = locality.Type;
-            int numberresidants = locality.NumberResidants;
-            int budget = locality.Budget;
-            string mayor = locality.Mayor;
+            string employee = locality.Employee;
+            int days = locality.Days;
+            int wage = locality.Wage;
+            string city = locality.City;
 
-            Locality loc = new Locality();
+            BusinessTrip loc = new BusinessTrip();
 
-            loc.Name = name;
-            loc.Type = type;
-            loc.NumberResidants = numberresidants;
-            loc.Budget = budget;
-            loc.Mayor = mayor;
+            loc.Employee = employee;
+            loc.Days = days;
+            loc.Wage = wage;
+            loc.City = city;
 
-            bool res = _repo.CreateLocality(loc);
+            bool res = _repo.CreateBusinessTrip(loc);
 
             string respStr = res.ToString();
 
@@ -121,13 +120,13 @@ namespace CourseWorkMain.Controllers
         }
 
         /// <summary>
-        /// Редактировать локацию
+        /// Редактировать командировку
         /// </summary>
-        [HttpPost("UpdateLocality")]
-        public IActionResult UpdateLocality([FromBody] Locality locality)
+        [HttpPost("UpdateBusinessTrip")]
+        public IActionResult UpdateLocality([FromBody] BusinessTrip locality)
         {
 
-            bool res = _repo.UpdateLocality(locality);
+            bool res = _repo.UpdateBusinessTrip(locality);
 
             string respStr = res.ToString();
 
@@ -135,14 +134,14 @@ namespace CourseWorkMain.Controllers
         }
 
         /// <summary>
-        /// Удалить локацию по айди
+        /// Удалить командировку по айди
         /// </summary>
-        [HttpPost("DeleteLocality")]
+        [HttpPost("DeleteBusinessTrip")]
         public IActionResult DeleteLocality([FromBody] int id)
         {
             try
             {
-                bool res = _repo.DeleteLocality(id);
+                bool res = _repo.DeleteBusinessTrip(id);
 
                 string respStr = res.ToString();
 
@@ -155,23 +154,22 @@ namespace CourseWorkMain.Controllers
         }
 
         /// <summary>
-        /// Получить все локации по фио мера
+        /// Получить все 
         /// </summary>
-        [HttpGet("GetLocalitiesByMayor")]
-        public IActionResult GetLocalitiesByMajor([FromQuery(Name = "mayor")] string mayor)
+        [HttpGet("GetBusinessTripsByEmployee")]
+        public IActionResult GetBusinessTripsByEmployee([FromQuery(Name = "employee")] string employee)
         {
             dynamic localities = new JArray();
 
-            var ForeachLocalities = _repo.GetLocalitiesByMayor(mayor);
+            var ForeachLocalities = _repo.GetBusinessTripsByEmployee(employee);
             foreach (var l in ForeachLocalities)
             {
                 localities.Add(new JObject(
                     new JProperty("id", l.id),
-                    new JProperty("name", l.Name),
-                    new JProperty("type", l.Type),
-                    new JProperty("number_residants", l.NumberResidants),
-                    new JProperty("budget", l.Budget),
-                    new JProperty("mayor", l.Mayor)
+                    new JProperty("employee", l.Employee),
+                    new JProperty("days", l.Days),
+                    new JProperty("wage", l.Wage),
+                    new JProperty("city", l.City)
                     ));
             }
 

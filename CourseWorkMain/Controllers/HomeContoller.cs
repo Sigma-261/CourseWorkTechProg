@@ -4,13 +4,14 @@ using MathNet.Numerics.Statistics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using CourseWorkMain.Command;
 
 namespace CourseWorkMain.Controllers
 {
     public class HomeContoller : Controller
     {
         //Hosted web API REST Service base url
-        string Baseurl = "https://localhost:7105/";
+        string Baseurl = "https://localhost:7288/";
         public async Task<ActionResult> Index()
         {
 
@@ -23,7 +24,7 @@ namespace CourseWorkMain.Controllers
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetLocalities using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("/api/GetLocalities");
+                HttpResponseMessage Res = await client.GetAsync("/api/GetBusinessTrips");
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)
                 {
@@ -97,7 +98,7 @@ namespace CourseWorkMain.Controllers
             }
         }
 
-        public async Task<ActionResult> LocalityByTable()
+        public async Task<ActionResult> BusinessTripsByTable()
         {
             List<BusinessTrip> LocInfo = new List<BusinessTrip>();
             using (var client = new HttpClient())
@@ -133,7 +134,7 @@ namespace CourseWorkMain.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(BusinessTrip loc)
+        public async Task<ActionResult> Create(BusinessTrip BTrips)
         {
             using (var client = new HttpClient())
             {
@@ -144,7 +145,7 @@ namespace CourseWorkMain.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetLocalities using HttpClient
 
-                JsonContent content = JsonContent.Create(loc);
+                JsonContent content = JsonContent.Create(BTrips);
 
                 HttpResponseMessage Res = await client.PostAsync("api/CreateLocality", content);
                 //Checking the response is successful or not which is sent using HttpClient
@@ -184,7 +185,7 @@ namespace CourseWorkMain.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Update(BusinessTrip loc)
+        public async Task<ActionResult> Update(BusinessTrip BTrips)
         {
             using (var client = new HttpClient())
             {
@@ -195,7 +196,7 @@ namespace CourseWorkMain.Controllers
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetLocalities using HttpClient
 
-                JsonContent content = JsonContent.Create(loc);
+                JsonContent content = JsonContent.Create(BTrips);
 
                 HttpResponseMessage Res = await client.PostAsync("api/UpdateLocality", content);
                 //Checking the response is successful or not which is sent using HttpClient

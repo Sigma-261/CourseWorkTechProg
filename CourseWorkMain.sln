@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseWorkMain", "CourseWor
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AEA7CC13-21FB-4F57-9A78-D1EB95AF1A2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseWorkMain.Test", "..\CourseWorkMain.Test\CourseWorkMain.Test.csproj", "{27384284-F297-49E1-B44E-08B97FBCA2BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CourseWorkMain.Test", "..\CourseWorkMain.Test\CourseWorkMain.Test.csproj", "{27384284-F297-49E1-B44E-08B97FBCA2BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

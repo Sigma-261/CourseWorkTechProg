@@ -1,0 +1,15 @@
+﻿@model List<CourseWorkMain.Models.BusinessTrip>
+
+<h3>В списке @Model.Count элемента(ов)</h3>
+<table class="table" border="1">
+    <thead>
+        <tr><th>Id</th><th>ФИО</th><th>Кол-во дней</th><th>Зар. плата</th><th>Город</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var loc in Model)
+        {
+            <tr><td>@loc.id</td><td>@loc.Employee</td><td>@loc.Days</td><td>@loc.Wage</td><td>@loc.City</td></tr>
+        }
+    </tbody>
+</table>
+@Html.ActionLink("Назад", "Index", "Home")

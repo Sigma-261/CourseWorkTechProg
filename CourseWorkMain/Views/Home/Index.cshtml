@@ -1,0 +1,31 @@
+﻿@model List<CourseWorkMain.Models.BusinessTrip>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "LOCALITY";
+}
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h2>Список Локаций</h2>
+    <table border="1">
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.Employee</td>
+                <td>
+                    @Html.ActionLink("Смотреть", "Details", "Home", new { id = c.id }) |
+                    @Html.ActionLink("Изменить", "Update", "Home", new { id = c.id }) |
+                    @Html.ActionLink("Удалить", "Delete", "Home", new { id = c.id })
+                </td>
+            </tr>
+        }
+    </table>
+    <p> @Html.ActionLink("Добавить", "Create", "Home")</p>
+    <p> @Html.ActionLink("Посмотреть статистические показатели по всем локациям", "Statistic", "Home")</p>
+    <p> @Html.ActionLink("Посмотреть локации в виде таблицы", "Table", "Home")</p>
+</body>
+</html>

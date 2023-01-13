@@ -1,0 +1,28 @@
+﻿@model CourseWorkMain.Models.BusinessTrip
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            @Html.LabelFor(model => model.Employee)
+            <p>@Html.EditorFor(model => model.Employee)</p>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Days)
+            <p>@Html.EditorFor(model => model.Days)</p>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Wage)
+            <p>@Html.EditorFor(model => model.Wage)</p>
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.City)
+            <p>@Html.EditorFor(model => model.City)</p>
+        </div>
+        <p><input type="submit" value="Сохранить" /></p>
+    }
+    @Html.ActionLink("Назад", "Index", "Home")
+</div>

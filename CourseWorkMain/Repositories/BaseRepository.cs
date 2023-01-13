@@ -21,6 +21,15 @@ namespace CourseWorkMain.Repositories
         }
 
         /// <summary>
+        /// Получть бюджеты
+        /// </summary>
+        /// <returns>Массив бюджетов</returns>
+        public double[] GetBudgets()
+        {
+            return ExcuteCommand("GetBudgets") as double[];
+        }
+
+        /// <summary>
         /// Получить всю информаци по всем локациям
         /// </summary>
         /// <returns>Лист локаций</returns>

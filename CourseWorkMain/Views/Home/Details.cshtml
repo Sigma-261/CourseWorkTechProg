@@ -1,0 +1,9 @@
+﻿@model CourseWorkMain.Models.BusinessTrip
+<div>
+    <h3>Id:  @Html.DisplayFor(m => m.id)</h3>
+    <p>ФИО: @Html.DisplayFor(m => m.Employee)</p>
+    <p>Кол-во дней: @Html.DisplayFor(m => m.Days)</p>
+    <p>Зар. плата: @Html.DisplayFor(m => m.Wage)</p>
+    <p>Город: @Html.DisplayFor(m => m.City)</p>
+    @Html.ActionLink("Назад", "Index", "Home")
+</div>
