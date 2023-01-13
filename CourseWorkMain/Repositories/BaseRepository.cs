@@ -118,6 +118,7 @@ namespace CourseWorkMain.Repositories
         {
             _commands = new Dictionary<string, ICommand>();
 
+            _commands.Add("GetBudgets", new GetBudgetsCommand(new ReceiverGetBudgets()));
             _commands.Add("GetBusinessTrips", new GetBusinessTripsCommand(new ReceiverGetBusinessTrips()));
             _commands.Add("GetLocalitiesByMajor", new GetBusinessTripsByEmployeeCommand(new ReceiverGetBusinessTripsByEmployee("")));
             _commands.Add("GetLocalityById", new GetBusinessTripsByIdCommand(new ReceiverGetBusinessTripsById(0)));

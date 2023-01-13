@@ -1,4 +1,4 @@
-﻿namespace CourseWorkMain.Iterator
+﻿namespace CourseWorkMain.GoFIterator
 {
     public abstract class Iterator
     {

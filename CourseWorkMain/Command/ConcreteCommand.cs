@@ -15,6 +15,19 @@ namespace CourseWorkMain.Command
         }
     }
 
+    public class GetBudgetsCommand : ICommand
+    {
+        ReceiverGetBudgets receiver;
+        public GetBudgetsCommand(ReceiverGetBudgets r)
+        {
+            receiver = r;
+        }
+        public object Execute(ApplicationContext ctx)
+        {
+            return receiver.GetBudgets(ctx);
+        }
+    }
+
     public class GetBusinessTripsByEmployeeCommand : ICommand
     {
         ReceiverGetBusinessTripsByEmployee receiver;

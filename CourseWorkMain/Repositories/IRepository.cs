@@ -7,7 +7,7 @@ namespace CourseWorkMain.Repositories
     public interface IRepository
     {
         List<BusinessTrip> GetBusinessTrips();
-        int[] GetBudgets();
+        double[] GetBudgets();
         Stats GetLStatisticBudgets(double[]? budgets);
         bool DeleteBusinessTrip(int id);
         bool UpdateBusinessTrip(BusinessTrip loc);

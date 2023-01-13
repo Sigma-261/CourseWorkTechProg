@@ -4,6 +4,8 @@ using CourseWorkMain.Models.ViewModels;
 using MathNet.Numerics.Statistics;
 using Microsoft.EntityFrameworkCore;
 
+using CourseWorkMain.GoFIterator;
+
 namespace CourseWorkMain.Command
 {
     public class ReceiverGetBusinessTrips
@@ -11,6 +13,33 @@ namespace CourseWorkMain.Command
         public object GetBusinessTrips(ApplicationContext ctx)
         {
             return ctx.BusinessTrips.ToList();
+        }
+    }
+
+    public class ReceiverGetBudgets
+    {
+        public object GetBudgets(ApplicationContext ctx)
+        {
+            List<double> Temp = new List<double>();
+
+            BudgetsAggregate la = new BudgetsAggregate();
+
+            var selectedBudgets = (from b in ctx.BusinessTrips
+                                   select Convert.ToDouble(b.Wage)).ToList();
+
+            la.FillItems(selectedBudgets);
+
+            Iterator i = la.CreateIterator();
+
+            object item = i.First();
+
+            while (item != null)
+            {
+                Temp.Add(Convert.ToDouble(item));
+                item = i.Next();
+            }
+
+            return Temp.ToArray();
         }
     }
 
