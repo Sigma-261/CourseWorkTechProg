@@ -8,7 +8,7 @@ using CourseWorkMain.Command;
 
 namespace CourseWorkMain.Controllers
 {
-    public class HomeContoller : Controller
+    public class HomeController : Controller
     {
         //Hosted web API REST Service base url
         string Baseurl = "https://localhost:7288/";
@@ -51,7 +51,7 @@ namespace CourseWorkMain.Controllers
                 //Define request data format
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //Sending request to find web api REST service resource GetLocalities using HttpClient
-                HttpResponseMessage Res = await client.GetAsync("api/GetLocalitiyById?id=" + id.ToString());
+                HttpResponseMessage Res = await client.GetAsync("api/GetBusinessTripById?id=" + id.ToString());
                 //Checking the response is successful or not which is sent using HttpClient
                 if (Res.IsSuccessStatusCode)
                 {
